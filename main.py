@@ -17,7 +17,7 @@ def api1_init(pincode):
     blinkit.set_location(pincode=pincode)
     return jsonify({"blinkit-result": "Initialized"})
 
-@app.route('/blinkit/search/<string:product>', methods=['GET'])
+@app.route('/blinkit/search/<string:product>')
 def api1(product):
     mylist = blinkit.search_for_product(product=product)
     temp_list = []
