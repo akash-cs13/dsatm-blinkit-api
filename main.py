@@ -1,5 +1,5 @@
 from flask import Flask, jsonify
-from blinkit_v2 import Blinkit_api
+from blinkit import Blinkit_api
 
 app = Flask(__name__)
 
