@@ -1,6 +1,7 @@
 from flask import Flask, jsonify
 from blinkit import Blinkit_api
 
+
 app = Flask(__name__)
 
 blinkit = Blinkit_api()
@@ -33,7 +34,7 @@ def api1_quit():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
 
 
 
