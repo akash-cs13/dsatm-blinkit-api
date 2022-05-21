@@ -1,7 +1,9 @@
 from flask import Flask, jsonify
 from blinkit import Blinkit_api
+from time import sleep
 import sys
 import logging
+
 
 app = Flask(__name__)
 
@@ -16,6 +18,7 @@ def myfun():
 @app.route('/blinkit/init/<string:pincode>')
 def api1_init(pincode):
     blinkit.initialization()
+    sleep(3)
     blinkit.set_location(pincode=pincode)
     return jsonify({"blinkit-result": "Initialized"})
 
