@@ -20,7 +20,7 @@ class Blinkit_api(webdriver.Chrome):
         chrome_options.add_argument("--no-sandbox")
         super(Blinkit_api, self).__init__(service=Service(os.environ.get("CHROMEDRIVER_PATH")), options=chrome_options)
         super(Blinkit_api, self).__init__(options=chrome_options)
-        self.implicitly_wait(10)
+        self.implicitly_wait(20)
 
     def initialization(self):
         self.get('https://www.blinkit.com')
@@ -29,7 +29,7 @@ class Blinkit_api(webdriver.Chrome):
         self.quit()
 
     def set_location(self, pincode = '560028'):
-        area = WebDriverWait(self, 2).until(
+        area = WebDriverWait(self, 10).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, 'input[data-test-id="area-input-box"]')))
         area.send_keys(pincode)
         sleep(3)
