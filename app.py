@@ -1,6 +1,7 @@
 from flask import Flask, jsonify
 from blinkit import Blinkit_api
-
+import sys
+import logging
 
 app = Flask(__name__)
 
@@ -34,6 +35,8 @@ def api1_quit():
 
 
 if __name__ == '__main__':
+    app.logger.addHandler(logging.StreamHandler(sys.stdout))
+    app.logger.setLevel(logging.ERROR)
     app.run(debug=True)
 
 
