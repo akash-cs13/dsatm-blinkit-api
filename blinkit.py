@@ -5,6 +5,8 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class Blinkit_api(webdriver.Chrome):
@@ -27,10 +29,11 @@ class Blinkit_api(webdriver.Chrome):
         self.quit()
 
     def set_location(self, pincode = '560028'):
-        self.find_element(by=By.CSS_SELECTOR, value='input[data-test-id="area-input-box"]').send_keys(pincode)
-        sleep(1)
-        self.find_element(by=By.CSS_SELECTOR, value='input[data-test-id="area-input-box"]').send_keys(Keys.ARROW_DOWN, Keys.ENTER)
-        sleep(2)
+        area = WebDriverWait(self, 2).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, 'input[data-test-id="area-input-box"]')))
+        area.send_keys(pincode)
+        sleep(3)
+        area.send_keys(Keys.ARROW_DOWN, Keys.ENTER)
 
     def search_for_product(self, product):
         self.find_element(by=By.CSS_SELECTOR, value='input[placeholder="Search for products"]').send_keys(product, Keys.ENTER)
